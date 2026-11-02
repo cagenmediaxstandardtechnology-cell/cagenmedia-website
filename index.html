@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CAGEN MEDIA — Professional video production, photography, music recording, branding, web development and computer training.">
+  <title>CAGEN MEDIA — Creative Production & Tech Training</title>
+
+  <!-- Google Fonts (Inter — clean, modern, tech-style) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #ff7b00;
+      --primary-dark: #1d4ed8;
+      --primary-light: #dbeafe;
+      --accent: #7c3aed;
+      --dark: #0a0905;
+      --dark-2: #1e1e2f;
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-600: #4b5563;
+      --gray-500: #6b7280;
+      --gray-300: #d1d5db;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+      --gray-50: #f9fafb;
+      --white: #ffffff;
+      --radius-sm: 10px;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 20px 30px -8px rgba(37,99,235,0.15);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-900);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 { font-weight: 800; line-height: 1.15; letter-spacing: -0.025em; }
+    h1 { font-size: clamp(2.3rem, 5.5vw, 4rem); }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); margin-bottom: 1.25rem; }
+    h3 { font-size: 1.3rem; }
+    p { color: var(--gray-600); }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: var(--white);
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(37,99,235,0.25);
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(37,99,235,0.35); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: none;
+    }
+    .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+    .btn-white { background: var(--white); color: var(--dark); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+    .btn-white:hover { background: var(--gray-100); color: var(--dark); }
+
+    /* ===== SECTION ===== */
+    .section { padding: 96px 0; }
+    .section-header { text-align: center; max-width: 720px; margin: 0 auto 60px; }
+    .section-header p { font-size: 1.15rem; }
+    .section-tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background-color: #065f46;
+      backdrop-filter: scroll;
+      border-bottom: 1px solid #f8f4f4;
+      transition: var(--transition);
+    }
+    .navbar.scrolled {
+      border-bottom-color: var(--gray-200);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-img {
+      width: 50px;
+      object-fit: cover;
+    }
+    .logo-img img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-text { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.5px; color: var(--dark); }
+    .logo-text span { color: var(--primary); }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; font-weight: 500; font-size: 0.98rem; }
+    .nav-links a:not(.btn) { color: var(--white); transition: color 0.2s; position: relative; }
+    .nav-links a:not(.btn):hover { color: var(--primary); }
+    .nav-links a:not(.btn)::after {
+      content: ''; position: absolute; bottom: -6px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:not(.btn):hover::after { width: 100%; }
+
+    .mobile-menu-btn { display: none; font-size: 1.7rem; color: var(--primary); }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        position: fixed;
+        top: 78px; left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--white);
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        box-shadow: var(--shadow);
+        border-bottom: 1px solid var(--gray-200);
+      }
+      .nav-links.active { max-height: 500px; padding: 12px 0 24px; }
+      .nav-links li { width: 100%; }
+      .nav-links a:not(.btn) { display: block; padding: 14px 24px; }
+      .nav-links a:not(.btn)::after { display: none; }
+      .nav-links .btn { margin: 12px 24px 0; justify-content: center; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 150px 0 96px;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 0%, rgba(37,99,235,0.08), transparent),
+        radial-gradient(ellipse 50% 50% at 0% 100%, rgba(124,58,237,0.06), transparent),
+        var(--gray-50);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content { display: flex; align-items: center; gap: 64px; }
+    .hero-text { flex: 1.1; }
+    .hero-text h1 { margin-bottom: 24px; }
+    .hero-text .highlight {
+      background: linear-gradient(120deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-text p { font-size: 1.2rem; margin-bottom: 36px; max-width: 540px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 16px; }
+
+    .hero-image { flex: 1; position: relative; }
+    .hero-image-frame {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 30px 60px -20px rgba(11,11,26,0.35);
+      transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+    }
+    .hero-image-frame:hover { transform: perspective(1200px) rotateY(0) rotateX(0); }
+    .hero-image-frame img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -20px; left: -20px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 22px;
+      box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; gap: 14px;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .hero-badge i { font-size: 1.6rem; color: var(--primary); }
+    .hero-badge strong { display: block; font-size: 1.15rem; color: var(--dark); }
+    .hero-badge small { color: var(--gray-500); font-size: 0.8rem; }
+
+    @media (max-width: 940px) {
+      .hero { padding: 130px 0 80px; }
+      .hero-content { flex-direction: column; gap: 56px; text-align: center; }
+      .hero-text p { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .hero-image-frame { transform: none; }
+      .hero-badge { left: 50%; transform: translateX(-50%); bottom: -28px; animation: none; }
+    }
+
+    /* ===== STATS BAR ===== */
+    .stats { background: var(--dark); color: var(--white); padding: 48px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 32px; text-align: center; }
+    .stat-number { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; }
+    .stat-number span { color: var(--primary-light); }
+    .stat-label { color: #94a3b8; font-size: 0.92rem; margin-top: 4px; }
+
+    /* ===== SERVICES ===== */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 60px; height: 60px;
+      border-radius: 16px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 22px;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon { background: var(--primary); color: var(--white); transform: rotate(-6deg) scale(1.05); }
+    .service-card h3 { margin-bottom: 10px; color: var(--dark); }
+    .service-card p { font-size: 0.96rem; }
+
+    /* ===== PORTFOLIO / FILTER GALLERY ===== */
+    .showcase { background: var(--gray-50); }
+    .filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 44px; }
+    .filter-btn {
+      padding: 10px 22px;
+      border-radius: 50px;
+      background: var(--white);
+      color: var(--gray-700);
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid var(--gray-200);
+      transition: var(--transition);
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .portfolio-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      background: var(--dark);
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+    .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, opacity 0.3s; opacity: 0.9; }
+    .portfolio-item:hover img { transform: scale(1.08); opacity: 1; }
+    .portfolio-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(11,11,26,0.85), transparent 60%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-overlay h4 { color: var(--white); font-size: 1.15rem; }
+    .portfolio-overlay span { color: var(--primary-light); font-size: 0.85rem; font-weight: 500; }
+    .portfolio-play {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(37,99,235,0.92);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      opacity: 0; transition: var(--transition);
+      backdrop-filter: blur(4px);
+    }
+    .portfolio-item:hover .portfolio-play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+    /* ===== VIDEO MODAL ===== */
+    .modal {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.92);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .modal.active { opacity: 1; visibility: visible; }
+    .modal-content { width: 100%; max-width: 960px; position: relative; }
+    .modal-video-wrapper {
+      position: relative; width: 100%; padding-top: 56.25%;
+      background: #000; border-radius: var(--radius);
+      overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    .modal-video-wrapper video,
+    .modal-video-wrapper iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: none;
+    }
+    .modal-close {
+      position: absolute; top: -50px; right: 0;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); color: #fff;
+      font-size: 1.3rem; display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .modal-close:hover { background: var(--primary); transform: rotate(90deg); }
+
+    /* ===== TRAINING / CTA ===== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1a3a 100%);
+      color: #fff; border-radius: var(--radius-xl);
+      padding: 72px 48px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -50%; right: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(37,99,235,0.35), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section::after {
+      content: ''; position: absolute; bottom: -50%; left: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 { color: #fff; position: relative; }
+    .cta-section p { color: #cbd5e1; font-size: 1.15rem; max-width: 580px; margin: 0 auto 36px; position: relative; }
+    .cta-section .btn { position: relative; }
+
+    /* ===== CONTACT ===== */
+    .contact-section { background: var(--gray-50); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 35px; align-items: start; }
+    .contact-info h2 { margin-bottom: 20px; }
+    .contact-info > p { margin-bottom: 36px; font-size: 1.05rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 22px; margin-bottom: 36px; }
+    .contact-item { display: flex; gap: 20px; align-items: flex-start; }
+    .contact-item-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--white); color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; box-shadow: var(--shadow-sm)
+    }
+    .contact-item strong { display: block; color: var(--dark); font-size: 0.95rem; }
+    .contact-item span { color: var(--gray-600); font-size: 0.95rem; }
+
+    .contact-socials { display: flex; gap: 12px; }
+    .contact-socials a {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--white); color: var(--gray-700);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .contact-socials a:hover { background: var(--primary); color: var(--white); transform: translateY(-3px); }
+
+    /* Form */
+    .contact-form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.88rem; color: var(--gray-700); margin-bottom: 7px; }
+    .form-group label .req { color: #ef4444; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--gray-900);
+      background: var(--gray-50);
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group.error input,
+    .form-group.error select,
+    .form-group.error textarea { border-color: #ef4444; background: #fef2f2; }
+    .form-error-msg { display: none; color: #ef4444; font-size: 0.8rem; margin-top: 5px; font-weight: 500; }
+    .form-group.error .form-error-msg { display: block; }
+
+    .contact-form-card .btn { width: 100%; justify-content: center; margin-top: 6px; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      font-weight: 500;
+    }
+    .form-success.show { display: block; animation: fadeIn 0.4s ease; }
+    .form-success i { font-size: 2rem; color: #10b981; display: block; margin-bottom: 8px; }
+
+    @media (max-width: 940px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-form-card { padding: 30px; }
+    }
+    @media (max-width: 540px) {
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    /* ===== FOOTER ===== */
+    .footer { background: var(--dark); color: #cbd5e1; padding: 72px 0 0; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1.3fr;
+      gap: 48px;
+      padding-bottom: 56px;
+    }
+    .footer-brand .logo-text { color: #55e700; margin-bottom: 15px; }
+    .footer-brand p { font-size: 0.94rem; color: #94a3b8; margin-bottom: 22px; max-width: 300px; }
+    .footer h4 { color: #fff; font-size: 1rem; margin-bottom: 20px; font-weight: 600; letter-spacing: 0.01em; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { color: #94a3b8; font-size: 0.94rem; transition: color 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .footer-links a:hover { color: #fff; }
+    .footer-links a i { font-size: 0.7rem; color: var(--primary); }
+
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-socials a {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,0.07); color: #cbd5e1;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .footer-socials a:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
+
+    .footer-contact-line { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; color: #94a3b8; font-size: 0.94rem; }
+    .footer-contact-line i { color: var(--primary); margin-top: 4px; }
+
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 26px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: #64748b;
+    }
+    .copyright a { color: #94a3b8; }
+    .copyright a:hover { color: #fff; }
+    .copyright .heart { color: #ef4444; }
+
+    @media (max-width: 940px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .copyright { flex-direction: column; text-align: center; }
+    }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.4);
+      opacity: 0; visibility: hidden;
+      transform: translateY(12px);
+      transition: var(--transition);
+      z-index: 900;
+    }
+    .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="logo" aria-label="CAGEN MEDIA home">
+        <div class="logo-img">
+        <div class="logo-img"></div><link rel="icon"><img src="logo.png"><head>
+        </div>
+        <div class="logo-text">CAGEN<span>MEDIA</span></div>
+      </a>
+
+      <button class="mobile-menu-btn" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#showcase">Portfolio</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn">Get a Quote</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <span class="section-tag">Creative Studio & Tech Academy</span>
+        <h1>Create. Produce.<br><span class="highlight">Elevate.</span></h1>
+        <p>CAGEN MEDIA delivers professional video production, photography, music recording, branding, web development, and hands-on computer training — all under one roof.</p>
+        <div class="hero-buttons">
+          <a href="#services" class="btn"><i class="fas fa-rocket"></i> Explore Services</a>
+          <a href="#showcase" class="btn btn-outline"><i class="fas fa-play"></i> View Our Work</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-frame">
+          <img src="images/dt.png"
+               alt="Professional film crew on a video production set" loading="eager">
+        </div>
+        <div class="hero-badge">
+          <i class="fas fa-award"></i>
+          <div>
+            <strong>over 2000+ Projects</strong>
+            <small>Delivered with excellence</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div>
+        <div class="stat-number" data-count="2000">0<span>+</span></div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div>
+        <div class="stat-number" data-count="1012">0<span>+</span></div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div>
+        <div class="stat-number" data-count="10">0<span>+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-number" data-count="500">0<span>+</span></div>
+        <div class="stat-label">Students Trained<span><br>Within 2years</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What We Do</span>
+        <h2>Everything Your Brand Needs</h2>
+        <p>From the first shot to the final line of code — we cover the full creative and technical spectrum.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-video"></i></div>
+          <h3>Video Shooting & Editing</h3>
+          <p>Cinematic camera work, drone footage, Animations Production, and professional post-production for commercials, events, and content.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-camera"></i></div>
+          <h3>Photo Shoots & Editing</h3>
+          <p>Studio and on-location photography with expert retouching and color grading for brands and individuals.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-music"></i></div>
+          <h3>Music Recording & Labeling</h3>
+          <p>Full audio production, mixing, mastering, and independent label services for artists and creators.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+          <h3>Labeling & Branding</h3>
+          <p>Logo design, graphic design, visual identity systems, brand guidelines, and packaging that make you unforgettable.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-code"></i></div>
+          <h3>Website Design & Development</h3>
+          <p>Responsive, fast, and modern websites — from portfolio sites to full e-commerce platforms.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+          <h3>Computer Training</h3>
+          <p>Hands-on courses in video editing, graphic design, web development, and essential digital skills.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO / SHOWCASE ===== -->
+  <section class="section showcase" id="showcase">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Our Work</span>
+        <h2>Recent Projects</h2>
+        <p>A glimpse of the visuals, stories, and brands we've brought to life. Click any project to play.</p>
+      </div>
+
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="video">Video</button>
+        <button class="filter-btn" data-filter="photo">Photography</button>
+        <button class="filter-btn" data-filter="music">Music</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-item" data-category="video" data-video="https://media.istockphoto.com/id/1373259073/video/editing-a-footage-in-video-editing-suite.mp4?s=mp4-640x640-is&k=20&c=loZJ8mJ_BpyrXGD5tXgSvYcuxMo_p5C8piKKPPCoy7g=" data-title=" Brand Commercial — Nova">
+          <img src="https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg" alt="Brand commercial video production">
+          <div class="portfolio-play"><i class="fas fa-play"></i></div>
+          <div class="portfolio-overlay">
+            <span>Video Production</span>
+            <h4>Video-Shooting and Editing</h4>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="photo" data-video="https://www.pexels.com/download/video/7610996/" data-title="Editorial Shoot — Aurora">
+          <img src="https://images.pexels.com/photos/17609700/pexels-photo-17609700.jpeg" alt="Editorial photo shoot">
+          <div class="portfolio-play"><i class="fas fa-play"></i></div>
+          <div class="portfolio-overlay">
+            <span>Photography</span>
+            <h4>Editorial Shoot/Perfect Photographs</h4>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="music" data-video="https://www.pexels.com/download/video/8197848/" data-title="Single Recording — Pulse">
+          <img src="https://images.pexels.com/photos/4988132/pexels-photo-4988132.jpeg"
+        " alt="Music recording studio session">
+          <div class="portfolio-play"><i class="fas fa-play"></i></div>
+          <div class="portfolio-overlay">
+            <span>Music Production</span>
+            <h4>Single Recording — Pulse& Mastering</h4>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="web" data-video="https://www.pexels.com/download/video/7191512/" data-title="E-commerce Site — Verde">
+          <img src="https://media.istockphoto.com/id/2212360504/photo/holographic-ui-ux-display-icons-of-ux-ui-designer-creative-planning-data-visualization-web.jpg?s=1024x1024&w=is&k=20&c=skd_SMOtTMujQh9SX6oawwdSDeuPhmkxXmVqxUWLPrA=" alt="E-commerce website design">
+          <div class="portfolio-play"><i class="fas fa-play"></i></div>
+          <div class="portfolio-overlay">
+            <span>Web Development</span>
+            <h4>Website Designing& Developement</h4>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="video" data-video="https://www.pexels.com/download/video/7656536/" data-title="Graphic Designing">
+          <img src="https://images.pexels.com/photos/2576194/pexels-photo-2576194.jpeg" alt="Documentary film production">
+          <div class="portfolio-play"><i class="fas fa-play"></i></div>
+          <div class="portfolio-overlay">
+            <span>Graphics Designing</span>
+            <h4>Logos,Business Cards, Burners and many more.</h4>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="photo" data-video="https://www.pexels.com/download/video/5377697/" data-title="Product Shoot — Lumen">
+          <img src="https://images.pexels.com/photos/3747481/pexels-photo-3747481.jpeg" alt="Product photography studio">
+          <div class="portfolio-play"><i class="fas fa-play"></i></div>
+          <div class="portfolio-overlay">
+            <span>Computer Training</span>
+            <h4>Cyber-Technology,Hacking and Computer science etc.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO MODAL ===== -->
+  <div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close video"><i class="fas fa-times"></i></button>
+      <div class="modal-video-wrapper">
+        <video id="modalVideo" controls playsinline preload="metadata">
+          <source src="" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TRAINING CTA ===== -->
+  <section class="container" id="training">
+    <div class="cta-section reveal">
+      <h2>Learn the Tools of the Trade</h2>
+      <p>Join our computer training programs and master video editing, design, and web development with hands-on guidance from industry pros.</p>
+      <a href="#contact" class="btn btn-white"><i class="fas fa-graduation-cap"></i> Enroll Now</a>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <span class="section-tag">Get in Touch</span>
+          <h2>Let's Build Something Great</h2>
+          <p>Have a project in mind? Tell us about it and we'll get back to you within one business day.</p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <strong>Mail Us</strong>
+                <span>cagenmediaxstandardtechnology@gmail.com</span><br>
+                <span>carlgenius2@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <strong>Call Us</strong>
+                <span>+256 (394) 334 872</span><br>
+                <span>+256 (765) 755 387</span><br>
+                <span>+256 (755) 876 762</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <strong>Visit us</strong>
+                <span>Kampala-Uganda Africa</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <a href="https://www.instagram.com/cagen_media_and_standard_tech/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@CAGENMEDIAOfficial" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@cagenmedia" aria-label="tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/CAGENMEDIA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100094442993396" aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-card reveal">
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" placeholder="" required>
+                <span class="form-error-msg">Please enter your name.</span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" placeholder="" required>
+                <span class="form-error-msg">Please enter a valid email.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service">Service Interested In <span class="req">*</span></label>
+              <select id="service" name="service" required>
+                <option value="">Select a service…</option>
+                <option>Video Shooting & Editing</option>
+                <option>Photo Shoots & Editing</option>
+                <option>Music Recording & Labeling</option>
+                <option>Labeling & Branding</option>
+                <option>Website Design & Development</option>
+                <option>Computer Training</option>
+                <option>Other / Multiple</option>
+              </select>
+              <span class="form-error-msg">Please choose a service.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Project Details <span class="req">*</span></label>
+              <textarea id="message" name="message" placeholder="Tell us a bit about your project, timeline, and budget…" required></textarea>
+              <span class="form-error-msg">Please tell us about your project.</span>
+            </div>
+
+            <button type="submit"class="btn"><i class="fas fa-paper-plane"></i> SUBMIT</button>
+
+            <div class="form-success" id="formSuccess">
+              <i class="fas fa-check-circle"></i>
+              Thank you! Your message has been sent. We'll be in touch shortly.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+  <div class="logo" style="margin-bottom: 100px;">
+      <div class="logo-img"><link rel="icon"><img src="logo.png"></span></div>
+      <div class="logo-text">CAGEN<span>MEDIA</span></div>
+          </div>
+          <p>Full-service creative production and tech training. We help brands and creators look, sound, and perform better.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/cagen_media_and_standard_tech/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@CAGENMEDIAOfficial" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100094442993396" aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/CAGENMEDIA" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Video Production</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Photography</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Music Recording</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Branding</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#home"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="#showcase"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+            <li><a href="#training"><i class="fas fa-chevron-right"></i> Training</a></li>
+            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Get in Touch</h4>
+          <div class="footer-contact-line"><i class="fas fa-envelope"></i><span>cagenmediaxstandardtechnology@gmail.com</span></div>
+          <div class="footer-contact-line"><i class="fas fa-envelope"></i><span>carlgenius2@gmail.com</span></div>
+          <div class="footer-contact-line"><i class="fas fa-phone"></i><span>+256 (765) 755 387</span></div>
+          <div class="footer-contact-line"><i class="fas fa-phone"></i><span>+256 (755) 876 762</span></div>
+          <div class="footer-contact-line"><i class="fas fa-phone"></i><span>+256 (394) 334 872</span></div>
+          <div class="footer-contact-line"><i class="fas fa-map-marker-alt"></i><span>Kampala-Uganda Africa</span></div>
+          <div class="footer-contact-line"><i class="fas fa-map-marker-alt"></i><span>WORLDWIDE.</span></div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>copyright:  &copy;2026 CAGEN MEDIA. All rights reserved.</p>
+        <p>Crafted with LOVE<span class="heart"><i class="fas fa-heart"></i></span> for creators &amp; brands.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    /* ===== NAVBAR: scroll state + mobile toggle ===== */
+    const navbar = document.getElementById('navbar');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      backToTop.classList.toggle('show', window.scrollY > 500);
+    });
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      const icon = menuToggle.querySelector('i');
+      icon.classList.toggle('fa-bars', !isOpen);
+      icon.classList.toggle('fa-times', isOpen);
+    });
+
+    // Close mobile menu when a nav link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.querySelector('i').classList.add('fa-bars');
+        menuToggle.querySelector('i').classList.remove('fa-times');
+      });
+    });
+
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ===== SCROLL REVEAL ===== */
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    /* ===== ANIMATED STAT COUNTERS ===== */
+    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+        let current = 0;
+        const duration = 1600;
+        const start = performance.now();
+
+        function step(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          // ease-out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          current = Math.round(eased * target);
+          el.innerHTML = current + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        statObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    statNumbers.forEach(el => statObserver.observe(el));
+
+    /* ===== PORTFOLIO FILTERING ===== */
+    const filterBar = document.getElementById('filterBar');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      portfolioItems.forEach(item => {
+        const matches = filter === 'all' || item.dataset.category === filter;
+        if (matches) {
+          item.style.display = '';
+          // restart the fade-in animation
+          item.style.animation = 'none';
+          void item.offsetWidth;
+          item.style.animation = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+
+    /* ===== VIDEO MODAL ===== */
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(src) {
+      modalVideo.src = src;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      modalVideo.play().catch(() => { /* autoplay may be blocked — user can press play */ });
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      modalVideo.pause();
+      modalVideo.removeAttribute('src');
+      modalVideo.load();
+      document.body.style.overflow = '';
+    }
+
+    portfolioItems.forEach(item => {
+      item.addEventListener('click', () => openModal(item.dataset.video));
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    /* ===== CONTACT FORM VALIDATION ===== */
+    const form = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    const fields = {
+      name: { el: document.getElementById('name'), validate: v => v.trim().length >= 2 },
+      email: { el: document.getElementById('email'), validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      service: { el: document.getElementById('service'), validate: v => v !== '' },
+      message: { el: document.getElementById('message'), validate: v => v.trim().length >= 10 }
+    };
+
+    function validateField(key) {
+      const { el, validate } = fields[key];
+      const group = el.closest('.form-group');
+      const ok = validate(el.value);
+      group.classList.toggle('error', !ok);
+      return ok;
+    }
+
+    // Live validation on blur + input
+    Object.keys(fields).forEach(key => {
+      const el = fields[key].el;
+      el.addEventListener('blur', () => validateField(key));
+      el.addEventListener('input', () => {
+        if (el.closest('.form-group').classList.contains('error')) validateField(key);
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formSuccess.classList.remove('show');
+
+      let allValid = true;
+      Object.keys(fields).forEach(key => {
+        if (!validateField(key)) allValid = false;
+      });
+
+      if (!allValid) {
+        // Focus the first invalid field
+        const firstError = form.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea');
+        if (firstError) firstError.focus();
+        return;
+      }
+
+      // Simulate a successful submission
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+
+      setTimeout(() => {
+        form.reset();
+        formSuccess.classList.add('show');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+        // Hide success message after 6 seconds
+        setTimeout(() => formSuccess.classList.remove('show'), 6000);
+      }, 1200);
+    });
+
+    /* ===== SMOOTH SCROLL for hash links (fallback for browsers without CSS smooth scroll) ===== */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
